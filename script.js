@@ -1,4 +1,4 @@
-const HF_TOKEN = "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";
+const HF_TOKEN = "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";
 const PROVIDER = "together";
 const MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.1";
 const API_URL = ` https://router.huggingface.co/${PROVIDER}/v1/chat/completions`;
