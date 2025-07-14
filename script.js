@@ -17,6 +17,7 @@ const userInput = document.getElementById('userInput');
 const loading = document.getElementById('loading');
 const errorBox = document.getElementById('errorBox');
 const clearBtn = document.getElementById('clearBtn');
+const themeToggle = document.getElementById('themeToggle');
 
 function renderMessages() {
     chatBox.innerHTML = '';
@@ -31,6 +32,7 @@ function renderMessages() {
 
 function showLoading(show) {
     loading.classList.toggle('d-none', !show);
+    loading.textContent = show ? 'Loading...' : '';
 }
 
 function showError(msg) {
@@ -75,6 +77,27 @@ async function getResponse(prompt) {
         showLoading(false);
     }
 }
+
+function setTheme(dark) {
+    document.body.classList.toggle('dark', dark);
+    const icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = dark ? '☀️' : '🌙';
+}
+
+function loadTheme() {
+    const dark = localStorage.getItem('theme') === 'dark';
+    setTheme(dark);
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = !document.body.classList.contains('dark');
+        setTheme(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+}
+
+loadTheme();
 
 chatForm.addEventListener('submit', async (e) => {
     e.preventDefault();
